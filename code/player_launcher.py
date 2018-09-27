@@ -1,10 +1,9 @@
 """
-player_launcher.py
-
 This file is the player control.
 It enables the player to control one minicar in one of three modes using a controller.
 
-The **username** and **password** in line 45 must be replaced by the actual username and password of the Raspberry Pi before running this code.
+The **username** and **password** on line 44 must be replaced by the username and password of the Raspberry Pi before
+running this code.
 """
 
 import argparse
@@ -22,7 +21,7 @@ from player import controllers
 class Player(object):
     """Defines the player object to be controlled externally by a controller"""
 
-    def __init__(self,number,controller,max_speed=0.7,max_angle=0.3125,max_accel=1.,max_angle_acc=0.1):
+    def __init__(self, number, controller, max_speed=0.7, max_angle=0.3125, max_accel=1., max_angle_acc=0.1):
         # Import variables
         self.car_number = number
 
@@ -31,9 +30,9 @@ class Player(object):
 
         # Assign controller
         if controller == 'keyboard':
-            self.controller = controllers.Keyboard(max_speed,max_angle,max_accel,max_angle_acc)
+            self.controller = controllers.Keyboard(max_speed, max_angle, max_accel, max_angle_acc)
         elif controller == 'joystick':
-            self.controller = controllers.Joystick(max_speed,max_angle,max_accel,max_angle_acc)
+            self.controller = controllers.Joystick(max_speed, max_angle, max_accel, max_angle_acc)
         else:
             raise ValueError('Invalid controller')
 
@@ -50,7 +49,7 @@ class Player(object):
 
     def run(self):
         """Initiates the Pi and transfers incoming data to the Pi at 100Hz"""
-        Thread(target = self.boot).start()
+        Thread(target=self.boot).start()
         print('Listening...')
         clean = False
         while self.controller.running:
@@ -63,9 +62,9 @@ class Player(object):
 
             # Send data at 100Hz
             buffer = bytearray(
-                struct.pack('fff?',self.controller.speed,self.controller.angle,self.controller.brightness,
+                struct.pack('fff?', self.controller.speed, self.controller.angle, self.controller.brightness,
                             clean))
-            s.sendto(buffer,(self.ip,self.remote_port))
+            s.sendto(buffer, (self.ip, self.remote_port))
             time.sleep(0.01)
 
 
@@ -73,7 +72,7 @@ def main(car_list):
     """Starts and runs the listed cars"""
     unresponsive = []
     for car_number in car_list:
-        players[car_number] = Player(car_number,args.controller)
+        players[car_number] = Player(car_number, args.controller)
         response = players[car_number].ping()
         if response == 0:
             players_thread[car_number] = Thread(target=players[car_number].run)
@@ -96,8 +95,8 @@ def main(car_list):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Start and manually control a car")
-    parser.add_argument('-n','--cars',nargs='+',type=int,default=None,help='Manual cars')
-    parser.add_argument('-c','--controller',type=str,default='keyboard',help='Controller type')
+    parser.add_argument('-n', '--cars', nargs='+', type=int, default=None, help='Manual cars')
+    parser.add_argument('-c', '--controller', type=str, default='keyboard', help='Controller type')
     args = parser.parse_args()
 
     if args.cars is None:
@@ -105,7 +104,7 @@ if __name__ == '__main__':
         sys.exit(0)
 
     # Setup socket
-    s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
     players = {}
     players_thread = {}

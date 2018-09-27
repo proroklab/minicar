@@ -1,6 +1,4 @@
 """
-binds.py
-
 This file provides the binds for each controller.
 """
 
@@ -38,21 +36,21 @@ class JoystickBinds(object):
     """Binding information for the joystick controller"""
 
     def __init__(self):
-        self.escape = ('button',6)
-        self.pause = ('button',7)
+        self.escape = ('button', 6)
+        self.pause = ('button', 7)
 
-        self.stop = ('button',0)
+        self.stop = ('button', 0)
 
-        self.manual = ('button',2)
-        self.speed = ('axis',1)
-        self.angle = ('axis',4)
+        self.manual = ('button', 2)
+        self.speed = ('axis', 1)
+        self.angle = ('axis', 4)
 
-        self.semiautomatic = ('button',3)
-        self.accelerate = ('hat',(0,1))
-        self.turn = ('hat',(0,0))
+        self.semiautomatic = ('button', 3)
+        self.accelerate = ('hat', (0, 1))
+        self.turn = ('hat', (0, 0))
 
-        self.automatic = ('button',1)
+        self.automatic = ('button', 1)
 
-        self.lights_off = ('button',4)
-        self.lights_on = ('button',5)
-        self.brightness = ('axis',2)
+        self.lights_off = ('button', 4)
+        self.lights_on = ('button', 5)
+        self.brightness = ('axis', 2)

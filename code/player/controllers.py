@@ -1,10 +1,5 @@
 """
-controllers.py
-
 This file provides the keyboard control for the player.
-
-To be completed:
-- Avoid multiple inputs
 """
 
 import time
@@ -18,7 +13,7 @@ from player import binds
 class Keyboard(object):
     """Defines the Keyboard object to transfer keyboard inputs into player instructions"""
 
-    def __init__(self,max_speed,max_angle,max_accel,max_angle_acc):
+    def __init__(self, max_speed, max_angle, max_accel, max_angle_acc):
         # Import variables
         self.max_speed = max_speed
         self.max_angle = max_angle
@@ -52,13 +47,13 @@ class Keyboard(object):
         """Moves the car to the right lane when possible"""
         pass
 
-    def accelerate(self,accel):
+    def accelerate(self, accel):
         """Increases/decreases the speed up to the max speed"""
-        self.speed = min(self.max_speed,max(self.speed + accel,-self.max_speed))
+        self.speed = min(self.max_speed, max(self.speed + accel, -self.max_speed))
 
-    def turn(self,turn):
+    def turn(self, turn):
         """Increases/decreases the turning angle up to the max angle"""
-        self.angle = min(self.max_angle,max(self.angle + turn,-self.max_angle))
+        self.angle = min(self.max_angle, max(self.angle + turn, -self.max_angle))
 
     def listen(self):
         """Interprets bound inputs"""
@@ -136,16 +131,16 @@ class Keyboard(object):
             self.brightness = 1.
 
         elif keyboard.is_pressed(self.binds.decrease_brightness):
-            self.brightness = round(max(0.,self.brightness - 0.1),2)
+            self.brightness = round(max(0., self.brightness - 0.1), 2)
 
         elif keyboard.is_pressed(self.binds.increase_brightness):
-            self.brightness = round(min(1.,self.brightness + 0.1),2)
+            self.brightness = round(min(1., self.brightness + 0.1), 2)
 
 
 class Joystick(object):
     """Defines the Joystick object to transfer joystick inputs into player instructions"""
 
-    def __init__(self,max_speed,max_angle,max_accel,max_angle_acc):
+    def __init__(self, max_speed, max_angle, max_accel, max_angle_acc):
         # Import variables
         self.max_speed = max_speed
         self.max_angle = max_angle
@@ -180,7 +175,7 @@ class Joystick(object):
             # Print options
             for i in range(joystick_count):
                 joystick = pygame.joystick.Joystick(i)
-                print('ID: {}    Name: {}'.format(i,joystick.get_name()))
+                print('ID: {}    Name: {}'.format(i, joystick.get_name()))
 
             # Select options
             if joystick_count > 1:
@@ -205,27 +200,27 @@ class Joystick(object):
     def __del__(self):
         try:
             self.joystick.quit()
-        except (AttributeError,pygame.error):
+        except (AttributeError, pygame.error):
             pass
 
-    def check(self,bind):
+    def check(self, bind):
         """Read data from bound location"""
         input_type = bind[0]
         input_location = bind[1]
         if input_type == 'axis':
-            return round(self.joystick.get_axis(input_location),2)
+            return round(self.joystick.get_axis(input_location), 2)
         elif input_type == 'button':
             return self.joystick.get_button(input_location)
         elif input_type == 'hat':
             return self.joystick.get_hat(input_location[0])[input_location[1]]
 
-    def accelerate(self,accel):
+    def accelerate(self, accel):
         """Increases/decreases the speed up to the max speed"""
-        self.speed = min(self.max_speed,max(self.speed + accel,-self.max_speed))
+        self.speed = min(self.max_speed, max(self.speed + accel, -self.max_speed))
 
-    def turn(self,turn):
+    def turn(self, turn):
         """Increases/decreases the turning angle up to the max angle"""
-        self.angle = min(self.max_angle,max(self.angle + turn,-self.max_angle))
+        self.angle = min(self.max_angle, max(self.angle + turn, -self.max_angle))
 
     def listen(self):
         """Interprets bound inputs"""
