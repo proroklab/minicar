@@ -2,7 +2,7 @@
 This file is the player control.
 It enables the player to control one minicar in one of three modes using a controller.
 
-The **username** and **password** on line 44 must be replaced by the username and password of the Raspberry Pi before
+The <username> and <password> on line 44 must be replaced by the username and password of the Raspberry Pi before
 running this code.
 """
 
@@ -41,7 +41,7 @@ class Player(object):
 
     def boot(self):
         """Launches car.py in the Pi"""
-        os.system('putty -ssh **username**@{} -pw **password** -m "launch.txt"'.format(self.ip))
+        os.system('putty -ssh <username>@{} -pw <password> -m "launch.txt"'.format(self.ip))
 
     def ping(self):
         """Tests for response"""
