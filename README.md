@@ -7,6 +7,19 @@ minimum turning radius is 0.56 m, the maximum steering angle is 18 degrees and t
 
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/2oJFQnbN5CA/0.jpg)](http://www.youtube.com/watch?v=2oJFQnbN5CA)
 
+## Citation
+If you use this platform in your research, please cite our paper:
+```
+@inproceedings{hyldmar2019fleet,
+  title={A fleet of miniature cars for experiments in cooperative driving},
+  author={Hyldmar, Nicholas and He, Yijun and Prorok, Amanda},
+  booktitle={2019 International Conference on Robotics and Automation (ICRA)},
+  pages={3238--3244},
+  year={2019},
+  organization={IEEE}
+}
+```
+
 ### Contact Information
 **Dr Amanda Prorok**: [asp45@cam.ac.uk](mailto:asp45@cam.ac.uk)
 
